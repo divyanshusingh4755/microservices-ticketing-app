@@ -1,0 +1,23 @@
+apiVersion: skaffold/v2alpha3
+kind: Config
+deploy:
+  kubectl:
+    manifests:
+      - ./infra/k8s/*
+build:
+  local:
+    push: false
+  # for using google cloud
+  # googleCloudBuild:
+    # projectId: "Your project id" 
+  artifacts:
+    # for using image in google cloud
+    #  - image: us.gcr.io/your-project-id/auth 
+    - image: divyanshusingh4755/auth
+      context: auth
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
