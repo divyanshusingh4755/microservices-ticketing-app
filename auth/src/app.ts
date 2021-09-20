@@ -6,8 +6,7 @@ import { currentUserRouter } from "./routes/currentuser";
 import { signUpRouter } from "./routes/signup";
 import { singInRouter } from "./routes/signin";
 import { signOutRouter } from "./routes/signout";
-import { errorHandler } from "./middlewares/error-handlers";
-import { NotFoundError } from "./errors/not-found-error";
+import { errorHandler, NotFoundError } from "@wikietickets/common";
 
 const app = express();
 app.set("trust proxy", true);
