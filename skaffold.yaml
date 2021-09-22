@@ -9,17 +9,17 @@ build:
     push: false
   # for using google cloud
   # googleCloudBuild:
-    # projectId: "Your project id" 
+  # projectId: "Your project id"
   artifacts:
     # for using image in google cloud
-    #  - image: us.gcr.io/your-project-id/auth 
+    #  - image: us.gcr.io/your-project-id/auth
     - image: divyanshusingh4755/auth
       context: auth
       docker:
         dockerfile: Dockerfile
       sync:
         manual:
-          - src: 'src/**/*.ts'
+          - src: "src/**/*.ts"
             dest: .
     - image: divyanshusingh4755/client
       context: client
@@ -28,4 +28,12 @@ build:
       sync:
         manual:
           - src: "**/*.js"
+            dest: .
+    - image: divyanshusingh4755/tickets
+      context: tickets
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "src/**/*.ts"
             dest: .

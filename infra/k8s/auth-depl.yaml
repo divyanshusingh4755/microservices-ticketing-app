@@ -14,10 +14,12 @@ spec:
     spec:
       containers:
         - name: auth
-         # for using image in google cloud
-         # image: us.gcr.io/your-project-id/auth 
+          # for using image in google cloud
+          # image: us.gcr.io/your-project-id/auth
           image: divyanshusingh4755/auth
           env:
+            - name: MONGO_URI
+              value: "mongodb://auth-mongo-srv:27017/auth"
             - name: JWT_KEY
               valueFrom:
                 secretKeyRef:
