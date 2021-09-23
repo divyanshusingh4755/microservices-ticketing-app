@@ -17,6 +17,13 @@ spec:
           # for using image in google cloud
           # image: us.gcr.io/your-project-id/tickets
           image: divyanshusingh4755/tickets
+          resources:
+            limits:
+              memory: 512Mi
+              cpu: "1"
+            requests:
+              memory: 265Mi
+              cpu: "0.2"
           env:
             - name: MONGO_URI
               value: "mongodb://auth-mongo-srv:27017/auth"

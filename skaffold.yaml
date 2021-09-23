@@ -37,3 +37,5 @@ build:
         manual:
           - src: "src/**/*.ts"
             dest: .
+# Generating Secret Key
+# kubectl create secret generic jwt-secret --from-literal=JWT_KEY=yoursecretkey
