@@ -1,6 +1,7 @@
 import request from "supertest";
 import { app } from "../../app";
 import jwt from "jsonwebtoken";
+import { Ticket } from "../../models/ticket";
 
 function signIn() {
     // Build a JWT payload. {id, email}
@@ -87,5 +88,18 @@ it("returns an error if an invalid price is provided", async () => {
 });
 
 it("created a ticket with valid parameters", async () => {
+    let tickets = await Ticket.find({});
+    expect(tickets.length).toEqual(0);
+    await request(app)
+        .post('/api/tickets')
+        .set("Cookie", signIn())
+        .send({
+            title: "test",
+            price: 20
+        })
+        .expect(201);
 
+    tickets = await Ticket.find({});
+    expect(tickets.length).toEqual(1);
+    expect(tickets[0].title).toEqual("test");
 });
